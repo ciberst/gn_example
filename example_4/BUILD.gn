@@ -1,0 +1,5 @@
+# import("//build/rust/rust.gni")
+
+executable("example_4") {
+  sources = [ "main.rs" ]
+}

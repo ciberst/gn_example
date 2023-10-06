@@ -1,0 +1,16 @@
+declare_args() {
+  import("//build/gen_step.gni")
+  
+  enable_feature = false
+}
+
+group("all") {
+  # testonly = true
+  deps = [
+    "//example_1:example_1",
+    "//example_2",
+    "//example_3",
+    "//example_4",
+    "//example_5",
+  ]
+}

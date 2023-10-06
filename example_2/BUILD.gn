@@ -1,0 +1,18 @@
+action("example_2_action") {
+    script = "main.py"
+    args = [
+        rebase_path("$target_gen_dir/main.cc", root_out_dir)
+    ]
+    outputs = [
+        "$target_gen_dir/main.cc"
+    ]
+}
+
+executable("example_2") {
+    sources = [
+        "$root_build_dir/gen/example_2/main.cc"
+    ]
+    deps = [
+        ":example_2_action"
+    ]
+}

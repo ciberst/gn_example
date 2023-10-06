@@ -1,0 +1,9 @@
+executable("example_3") {
+    sources = [
+        "main.cc",
+    ]
+
+    deps = [
+        "library:library"
+    ]
+}

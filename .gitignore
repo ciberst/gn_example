@@ -1,0 +1,9 @@
+.DS_Store
+
+third_party/
+out/
+buildtools/
+.gclient
+.gclient_entries
+.gclient_previous_sync_commits
+.cipd

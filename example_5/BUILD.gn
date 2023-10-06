@@ -1,0 +1,25 @@
+template("my_template") {
+    print(target_name)
+    print(" sources: ", invoker.sources)
+    if (defined(invoker.foo)) {
+        print(" define foo", invoker.foo)
+    }
+    if (defined(invoker.bar)) {
+        print(" define bar", invoker.bar)
+    }
+    executable(target_name) {
+        defines = [ "TARGET=\"$target_name\"" ]
+        sources = invoker.sources    
+    }
+}
+
+my_template("example_5") {
+    sources = [ "a.cc", "b.cc" ]
+    bar = 123
+    foo = 2
+}
+
+my_template("example_5_1") {
+    sources = [ "a.cc", "b.cc" ]
+    bar = 123
+}

@@ -1,0 +1,26 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: checkout_depot_tools
+      run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools
+    - name: build
+      run: |-
+       export PATH="$(pwd)/depot_tools:$PATH"
+       cd ..
+       gclient sync -D --reset --spec 'solutions = [{'"'"'name'"'"': '"'"'${{ github.event.repository.name }}'"'"', '"'"'managed'"'"': False, '"'"'url'"'"': None, '"'"'custom_vars'"'"': {}, '"'"'deps_file'"'"': '"'"'DEPS'"'"'}]' --verbose
+       cd ${{ github.event.repository.name }}
+       gn gen out/Debug
+       ninja -C out/Debug
+

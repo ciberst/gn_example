@@ -1,0 +1,4 @@
+
+exec_script("gen_step.py")
+print("gen step from .gni")
+
